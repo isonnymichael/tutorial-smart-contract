@@ -154,9 +154,18 @@ Repository ini berisi kode sumber dan materi pembelajaran dari seri tutorial Sma
 - Implementasi interface
 - Kapan harus menggunakan interface
 
+**22. Tutorial Smart Contract: Comment**
+- Jenis komentar
+- Natspec (Natural Specification)
+- Tag Natspec
+- Contoh penggunaan Natspec
+- Membuat dokumentasi contract
+
 ## 🎯 Outcome
 Setelah mengikuti tutorial ini, diharapkan Anda:
 - Bisa menulis smart contract tanpa copy-paste
 - Paham struktur, validasi, dan keamanan dasar
 - Punya beberapa studi kasus nyata
 - Siap menggunakan standard industri (OpenZeppelin)
+- Memahami penggunaan interface
+- Membuat dokumentasi contract
