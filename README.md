@@ -37,8 +37,8 @@ Repository ini berisi kode sumber dan materi pembelajaran dari seri tutorial Sma
 - Inisialisasi state variable
 
 **5. Tutorial Smart Contract: Variabel & Tipe Data**
-- `uint`, `int`, `string`, `bool`
-- `address`
+- `uint`, `int`, `string`, `bool`, `address`
+- gloval variable
 - Default value
 - Contoh penggunaan nyata
 
@@ -147,6 +147,12 @@ Repository ini berisi kode sumber dan materi pembelajaran dari seri tutorial Sma
 - Best practice penggunaan library
 - Sekilas vulnerability umum (reentrancy, overflow)
 - Kenapa OpenZeppelin lebih aman
+
+**21. Tutorial Smart Contract: Interface**
+- Apa itu interface
+- Kenapa interface penting
+- Implementasi interface
+- Kapan harus menggunakan interface
 
 ## 🎯 Outcome
 Setelah mengikuti tutorial ini, diharapkan Anda:
