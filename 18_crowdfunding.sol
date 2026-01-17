@@ -1,90 +1,50 @@
-// SPDX-License-Identifier: GPL-3.0
-
-pragma solidity >=0.8.0 <0.9.0;
-
-contract Crowdfunding {
-    // Studi Kasus: Penggalangan Dana (Donasi)
-    
-    address public owner;
-    uint256 public targetAmount;
-    uint256 public deadline;
-    uint256 public raisedAmount;
-    uint256 public minDonation;
-    
-    // Mapping donatur
-    mapping(address => uint256) public donations;
-    
-    event Donated(address indexed donor, uint256 amount);
-    event Withdrawn(uint256 amount);
-    
-    constructor(uint256 _targetAmount, uint256 _durationInMinutes) {
-        // TODO: Set owner
-        
-        // TODO: Set targetAmount
-        
-        // TODO: Set deadline (block.timestamp + duration)
-        
-        // TODO: Set minDonation (misal 0.0001 ether)
-        
-    }
-    
-    modifier onlyOwner() {
-        // TODO: Buat logic modifier ini
-        // Check msg.sender == owner
-        // Gunakan underscore "_;"
-        
-    }
-    
-    modifier campaignOpen() {
-        // TODO: Check deadline belum lewat
-        
-        _;
-    }
-    
-    modifier campaignFinished() {
-        // TODO: Check deadline sudah lewat
-        
-        _;
-    }
-
-    // Donasi ETH
-    // TODO: Buat function public payable bernama donate yang menggunakan modifier campaignOpen
-    // 1. Require msg.value >= minDonation
-    // 2. Update mapping donations untuk msg.sender
-    // 3. Update raisedAmount
-    // 4. Emit event Donated
-    
-    // Withdraw oleh owner jika target tercapai atau campaign selesai
-    // (Simplifikasi: Boleh withdraw kapan saja asal owner, di real case mungkin ada syarat sukses)
-    // TODO: Buat function public bernama withdraw yang menggunakan modifier onlyOwner
-    // 1. Require raisedAmount >= targetAmount
-    // 2. Cek contract balance > 0
-    // 3. Transfer balance ke owner (gunakan .call)
-    // 4. Emit event Withdrawn
-    
-    // Refund jika campaign gagal
-    function refund() public campaignFinished {
-        // TODO: Require raisedAmount < targetAmount (campaign gagal)
-        
-        // TODO: Ambil jumlah donasi user
-        
-        // TODO: Require donasi > 0
-        
-        
-        // Reset balance dulu sebelum transfer (Check-Effects-Interactions Pattern)
-        // Mencegah Reentrancy Attack
-        // TODO: Set donations[msg.sender] = 0
-        
-        
-        // TODO: Refund ke user (gunakan call)
-        
-    }
-    
-    // Helper info sisa waktu
-    function timeLeft() public view returns (uint256) {
-        // TODO: Jika sudah lewat deadline, return 0
-        
-        // TODO: Return deadline - block.timestamp
-        
-    }
-}
+/*
+ * Studi Kasus: Penggalangan Dana (Donasi) - Crowdfunding
+ *
+ * Tujuan:
+ * - Latihan payable, modifier, event, dan pola keamanan dasar.
+ *
+ * Tugas:
+ * 1. State:
+ *    - address public owner;
+ *    - uint256 public targetAmount;
+ *    - uint256 public deadline;
+ *    - uint256 public raisedAmount;
+ *    - uint256 public minDonation;
+ *    - mapping(address => uint256) public donations;
+ * 2. Event:
+ *    - event Donated(address indexed donor, uint256 amount);
+ *    - event Withdrawn(uint256 amount);
+ * 3. Constructor:
+ *    - Parameter: uint256 _targetAmount, uint256 _durationInMinutes
+ *    - Set owner = msg.sender
+ *    - Set targetAmount
+ *    - Set deadline = block.timestamp + (_durationInMinutes * 1 minutes)
+ *    - Set minDonation (misal 0.0001 ether)
+ * 4. Modifier onlyOwner:
+ *    - Require msg.sender == owner
+ *    - Underscore di akhir untuk melanjutkan eksekusi
+ * 5. Modifier campaignOpen:
+ *    - Require block.timestamp < deadline
+ * 6. Modifier campaignFinished:
+ *    - Require block.timestamp >= deadline
+ * 7. Function donate (public payable, campaignOpen):
+ *    - Require msg.value >= minDonation
+ *    - Tambah donations[msg.sender]
+ *    - Tambah raisedAmount
+ *    - Emit Donated
+ * 8. Function withdraw (public, onlyOwner):
+ *    - Require raisedAmount >= targetAmount
+ *    - Require address(this).balance > 0
+ *    - Transfer seluruh balance ke owner (gunakan call)
+ *    - Emit Withdrawn
+ * 9. Function refund (public, campaignFinished):
+ *    - Require raisedAmount < targetAmount
+ *    - Ambil donasi user dari donations[msg.sender]
+ *    - Require donasi > 0
+ *    - Set donations[msg.sender] = 0 (check-effects-interactions)
+ *    - Refund ke user (gunakan call)
+ * 10. Function timeLeft (public view):
+ *    - Jika block.timestamp >= deadline, return 0
+ *    - Jika belum, return deadline - block.timestamp
+ */
